@@ -5,19 +5,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        Solicitud solicitud = new Solicitud();
+
         HandlerCien h100 = new HandlerCien();
         HandlerCincuenta h50 = new HandlerCincuenta();
         HandlerVeinte h20 = new HandlerVeinte();
         HandlerDiez h10 = new HandlerDiez();
         HandlerCinco h5 = new HandlerCinco();
 
-        double saldo = 0;
 
         System.out.println("Ingrese el saldo a retirar: ");
-        saldo = sc.nextDouble();
-        while(saldo % 5000 != 0){
+        solicitud.setSaldo(sc.nextDouble());
+
+        while(solicitud.getSaldo() % 5000 != 0){
             System.out.println("Ingrese por favor un saldo multiplo de 5000:");
-            saldo = sc.nextDouble();
+            solicitud.setSaldo(sc.nextDouble());
         }
 
         System.out.println("La devolucion de su retiro se dio de la siguiente manera");
@@ -27,7 +30,15 @@ public class Main {
         h20.asignarSiguiente(h10);
         h10.asignarSiguiente(h5);
 
-        h100.devolver(saldo);
+        try{
+        h100.devolver(solicitud);
+        }
+        catch(NullPointerException e)
+        {
+            //En caso de que el apuntador al siguiente elemento de la cadena de responsabilidad
+            //apunte a null
+            e.getMessage();
+        }
     }
 }
 /*

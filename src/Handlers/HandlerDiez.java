@@ -1,19 +1,21 @@
 package Handlers;
 
-public class HandlerDiez implements IMaquina{
-    private IMaquina siguiente;
-    @Override
-    public void asignarSiguiente(IMaquina obj) {
-        this.siguiente = obj;
+public class HandlerDiez extends HandlerClass {
+    public HandlerDiez() {
+
     }
 
     @Override
-    public void devolver(double saldo) {
-        int cantidad = (int) Math.floor(saldo/10000);
-        int residuo = (int) (saldo%10000);
+    public void devolver(Solicitud solicitud) {
+
+        int cantidad = (int) Math.floor(solicitud.getSaldo()/10000);
+        solicitud.getCantidades().add(cantidad);
+
+        int residuo = (int) (solicitud.getSaldo()%10000);
+        solicitud.setSaldo(residuo);
 
         System.out.println("La cantidad de billetes 10.000 dispensados es: "+cantidad);
-        this.siguiente.devolver(residuo);
+        this.siguiente.devolver(solicitud);
     }
 }
 
