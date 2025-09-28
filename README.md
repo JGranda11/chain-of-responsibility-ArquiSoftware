@@ -16,5 +16,7 @@ El **Chain of Responsibility** (Cadena de Responsabilidad) es un patrón de dise
 
 ```plaintext
 Client → Handler1 → Handler2 → Handler3 → ...
+```
+---
 
 En este caso particular se uso para dividir manejadores en una operación de devolución de dinero
